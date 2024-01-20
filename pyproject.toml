@@ -27,9 +27,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://github.com/unknown/pymultimap#readme"
-Issues = "https://github.com/unknown/pymultimap/issues"
-Source = "https://github.com/unknown/pymultimap"
+Documentation = "https://github.com/sachinsachdeva/pymultimap#readme"
+Issues = "https://github.com/sachinsachdeva/pymultimap/issues"
+Source = "https://github.com/sachinsachdeva/pymultimap"
 
 [tool.hatch.version]
 path = "src/pymultimap/__about__.py"
