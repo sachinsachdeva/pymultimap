@@ -1,51 +1,50 @@
-class MultiMap:
-    # A class that represents a dictionary with duplicate keys
+from sortedcontainers import SortedDict
 
-    def __init__(self):
-        # Initialize an empty hashmap to store key-value pairs
-        self.items = {}
+class MultiMap:
+    # A class that represents a dictionary with duplicate keys with support for
+    # order based on keys
+    def __init__(self, sorted: bool = False, reverse: bool = False):
+        self._store = SortedDict() if sorted else {}
+        self._sorted = sorted
+        self._reverse = reverse
 
     def __setitem__(self, key, value):
-        # Add a new key-value pair to the hashmap
-        # If the key already exists, append the value to the existing list
-        # Otherwise, create a new list with the value
-        if key in self.items:
-            self.items[key].append(value)
+        if key in self._store:
+            self._store[key].append(value)
         else:
-            self.items[key] = [value]
+            self._store[key] = [value]
 
     def __getitem__(self, key):
-        # Return a list of values associated with the given key
-        # If the key does not exist, raise a KeyError
-        if key in self.items:
-            return self.items[key]
+        if key in self._store:
+            return self._store[key]
         else:
             raise KeyError(f"{key} not found")
 
     def __delitem__(self, key):
-        # Delete the key-value pair with the given key
-        # If the key does not exist, raise a KeyError
-        if key in self.items:
-            del self.items[key]
+        if key in self._store:
+            del self._store[key]
         else:
             raise KeyError(f"{key} not found")
 
     def __len__(self):
         # Return the number of key-value pairs in the hashmap
-        return len(self.items)
+        return len(self._store)
 
     def __str__(self):
         # Return a string representation of the dictionary
-        return "{" + ", ".join(f"{k}: {v}" for k, v in self.items.items()) + "}"
+        return "{" + ", ".join(f"{k}: {v}" for k, v in self.items()) + "}"
 
     def keys(self):
-        # Return a list of keys in the dictionary
-        return list(self.items.keys())
+        if self._sorted and self._reverse:
+            return list(reversed(self._store.keys()))
+        return list(self._store.keys())
 
     def values(self):
-        # Return a list of values in the dictionary
-        return list(self.items.values())
+        if self._sorted and self._reverse:
+            return list(reversed(self._store.values()))
+        return list(self._store.values())
 
     def items(self):
-        # Return a list of key-value pairs in the dictionary
-        return list(self.items.items())
+        if self._sorted and self._reverse:
+            return list(reversed(self._store.items()))
+        return list(self._store.items())
