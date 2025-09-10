@@ -1,5 +1,6 @@
 from sortedcontainers import SortedDict
 
+
 class MultiMap:
     # A class that represents a dictionary with duplicate keys with support for
     # order based on keys
