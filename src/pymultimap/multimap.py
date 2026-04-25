@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import threading
 from collections.abc import MutableMapping
-from typing import Dict, Generic, Iterator, List, Tuple, TypeVar, Union
+from typing import Generic, Iterator, List, Tuple, TypeVar
 
 from sortedcontainers import SortedDict
 
@@ -17,7 +17,7 @@ class MultiMap(MutableMapping[K, List[V]], Generic[K, V]):
         if reverse and not sorted:
             raise ValueError("reverse=True requires sorted=True")
 
-        self._store: Union[Dict[K, List[V]], SortedDict[K, List[V]]] = SortedDict() if sorted else {}
+        self._store = SortedDict() if sorted else {}
         self._sorted = sorted
         self._reverse = reverse
         self._lock = threading.RLock()
