@@ -13,7 +13,7 @@
 
 ## MultiMap
 
-Python based Dictionary with support for duplicate keys and sorted data based on keys
+Python dictionary-like container with support for duplicate keys and optional key sorting.
 
 ## Installation
 
@@ -24,7 +24,7 @@ pip install pymultimap
 ## Usage
 
 ```python
-from pymultimap.multimap import MultiMap
+from pymultimap import MultiMap
 
 mm = MultiMap()
 mm["a"] = 1
@@ -32,14 +32,16 @@ mm["a"] = 2
 mm["b"] = 3
 
 print(mm)
+```
 
-Should print :
+Output:
+
+```python
 {a: [1, 2], b: [3]}
-
 ```
 
 ```python
-from pymultimap.multimap import MultiMap
+from pymultimap import MultiMap
 
 sorted_multimap = MultiMap(sorted=True, reverse=True)
 sorted_multimap["a"] = 1
@@ -47,11 +49,16 @@ sorted_multimap["c"] = 3
 sorted_multimap["b"] = 2
 
 print(sorted_multimap)
-
-Should print :
-{c: [3], b: [2], a: [1]}
-
 ```
+
+Output:
+
+```python
+{c: [3], b: [2], a: [1]}
+```
+
+`mm[key]` always returns the list of values associated with that key. When `sorted=True`,
+keys are ordered by key value, and `reverse=True` is available only with sorted maps.
 
 ## License
 
