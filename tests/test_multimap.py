@@ -86,9 +86,7 @@ def test_reverse_requires_sorted():
 def test_sorted_multimap_orders_keys_and_values(sorted_multimap):
     expected_keys = [3, 2, 1] if sorted_multimap._reverse else [1, 2, 3]
     expected_values = (
-        [["c"], ["b"], ["a"]]
-        if sorted_multimap._reverse
-        else [["a"], ["b"], ["c"]]
+        [["c"], ["b"], ["a"]] if sorted_multimap._reverse else [["a"], ["b"], ["c"]]
     )
 
     assert list(sorted_multimap.keys()) == expected_keys
