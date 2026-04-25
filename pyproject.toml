@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "pymultimap"
 dynamic = ["version"]
-description = ''
+description = "Dictionary-like container with support for duplicate keys and optional key sorting."
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
@@ -25,7 +25,8 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "sortedcontainers"
+  "pytest>=8.3.5",
+  "sortedcontainers",
 ]
 
 [project.urls]
@@ -54,7 +55,7 @@ cov = [
 ]
 
 [[tool.hatch.envs.all.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
 
 [tool.hatch.envs.types]
 dependencies = [
@@ -62,6 +63,12 @@ dependencies = [
 ]
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/pymultimap tests}"
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
 
 [tool.coverage.run]
 source_pkgs = ["pymultimap", "tests"]
